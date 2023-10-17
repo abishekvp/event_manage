@@ -4,5 +4,10 @@
 <section class="dashboard">
     <a href="signout" class="signout_btn"><button>SignOut</button></a>
     <h1>Welcome {{ request.user.username }}</h1>
+    <a href="addschedule"><button>Add Schedule</button></a>
+    <a href="viewschedule"><button>View Schedule</button></a>
+    <img src="http://127.0.0.1:8000/dashboard/images/abi.jpg"/>
+    {% block schedule %}
+    {% endblock %}
 </section>
 {% endblock %}

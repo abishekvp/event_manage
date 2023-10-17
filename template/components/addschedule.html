@@ -1,0 +1,21 @@
+{% extends 'dashboard.html' %}
+{% block title %}Schedule{% endblock title %}
+{% block content %}
+<section class="schedule">
+    <a href="dashboard"><button>Back</button></a>
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="date" name="date" id="date" placeholder="Event Date">
+        <input type="text" name="client_name" id="client_name" placeholder="Client Name">
+        <input type="text" name="function_place" id="function_place" placeholder="Function Place">
+        <input type="text" name="function_name" id="function_name" placeholder="Function Name">
+        <input type="text" name="stage_name" id="stage_name" placeholder="Stage Name">
+        <input type="file" name="stage_image" id="stage_image" placeholder="Stage Image">
+        <textarea name="description" id="description" cols="30" rows="5"></textarea>
+        <input type="number" name="t_amount" id="t_amount" placeholder="Total Amount">
+        <input type="number" name="advance" id="advance" placeholder="Advance">
+        <input type="number" name="balance" id="balance" placeholder="Balance">
+        <input type="submit" value="Add Event">
+    </form>
+</section>
+{% endblock %}

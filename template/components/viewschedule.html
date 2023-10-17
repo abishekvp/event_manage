@@ -1,0 +1,59 @@
+{% extends 'dashboard.html' %}
+{% block title %}Schedule{% endblock title %}
+{% block content %}
+<section class="schedule">
+    <a href="dashboard"><button>Back</button></a>
+    <table>
+        <thead>
+            <tr>
+                <td>S.No</td>
+                <td>Date</td>
+                <td>Client Name</td>
+                <td>Function Place</td>
+                <td>Function Name</td>
+                <td>Stage Image</td>
+                <td>Add On's</td>
+                <td>Stage Image</td>
+                <td>Total Amount</td>
+                <td>Advance</td>
+                <td>Balance</td>
+                <td>Finished</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i,schedule in schedules.items %}
+            <tr>
+                <td>{{ i }}</td>
+                <td>{{ schedule.date }}</td>
+                <td>{{ schedule.client_name }}</td>
+                <td>{{ schedule.function_place }}</td>
+                <td>{{ schedule.function_name }}</td>
+                <td>{{ schedule.stage_name }}</td>
+                <td>{{ schedule.description }}</td>
+                <td id="test"></td>
+                <td>{{ schedule.t_amount }}</td>
+                <td>{{ schedule.advance }}</td>
+                <td>{{ schedule.balance }}</td>
+                <td>{% csrf_token %}<input type="button" onclick="evech(this.id);" name="event_id" id="{{ schedule.event_id }}" value="Finished"></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+<script>
+    function evech(event_id){
+        $.ajax({
+            type:'POST',
+            url:'/updateschedule',
+            data:{
+                event_id:event_id,
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+            },
+            success: function(data){
+                alert("Schedule Updated");
+                window.location.href="viewschedule"
+            }
+        });
+    };
+</script>
+{% endblock %}
